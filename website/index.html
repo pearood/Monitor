@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小睿伴学 | 下载中心</title>
+    <meta name="description" content="小睿伴学桌面应用下载页，提供学生端与教师端一体化在线学习状态感知系统安装包。">
+    <style>
+        :root {
+            --bg: #f6f9fc;
+            --surface: rgba(255, 255, 255, 0.86);
+            --surface-strong: #ffffff;
+            --text: #10233f;
+            --muted: #607089;
+            --line: rgba(147, 169, 196, 0.24);
+            --blue: #1f63ff;
+            --blue-soft: #eaf2ff;
+            --blue-deep: #0c2f7a;
+            --shadow: 0 24px 80px rgba(16, 35, 63, 0.08);
+            --radius-xl: 28px;
+            --radius-lg: 22px;
+            --radius-md: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family: "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(64, 125, 255, 0.16), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(31, 99, 255, 0.12), transparent 28%),
+                linear-gradient(180deg, #fbfdff 0%, #f3f7fb 100%);
+            color: var(--text);
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .shell {
+            width: min(1200px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 28px 0 60px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-mark {
+            width: 46px;
+            height: 46px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #165cff 0%, #4f88ff 100%);
+            box-shadow: 0 18px 30px rgba(31, 99, 255, 0.22);
+            position: relative;
+        }
+
+        .brand-mark::before,
+        .brand-mark::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .brand-mark::before {
+            width: 11px;
+            height: 24px;
+            left: 13px;
+            top: 11px;
+        }
+
+        .brand-mark::after {
+            width: 11px;
+            height: 18px;
+            right: 13px;
+            top: 17px;
+        }
+
+        .brand-copy h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-copy p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.68);
+            border: 1px solid var(--line);
+            color: var(--blue-deep);
+            box-shadow: 0 12px 30px rgba(16, 35, 63, 0.04);
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #16c784;
+            box-shadow: 0 0 0 8px rgba(22, 199, 132, 0.12);
+        }
+
+        .hero {
+            position: relative;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(238, 246, 255, 0.96));
+            border: 1px solid rgba(162, 184, 211, 0.24);
+            border-radius: 34px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            padding: 42px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -20% auto auto -10%;
+            width: 360px;
+            height: 360px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(31, 99, 255, 0.16), transparent 68%);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            right: -40px;
+            top: -50px;
+            width: 320px;
+            height: 320px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(111, 164, 255, 0.18), transparent 66%);
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.45fr 0.95fr;
+            gap: 28px;
+            z-index: 1;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(31, 99, 255, 0.08);
+            color: var(--blue);
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .hero-title {
+            margin: 0;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.04;
+            letter-spacing: -0.04em;
+            max-width: 760px;
+        }
+
+        .hero-text {
+            margin: 18px 0 0;
+            max-width: 680px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .hero-pills span {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(162, 184, 211, 0.24);
+            color: var(--blue-deep);
+            font-size: 13px;
+        }
+
+        .hero-side {
+            display: grid;
+            gap: 14px;
+            align-content: start;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(162, 184, 211, 0.22);
+            border-radius: var(--radius-xl);
+            padding: 22px;
+            backdrop-filter: blur(16px);
+        }
+
+        .hero-card h2 {
+            margin: 0 0 10px;
+            font-size: 16px;
+        }
+
+        .hero-card p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.84);
+            border: 1px solid rgba(162, 184, 211, 0.22);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+        }
+
+        .metric span {
+            display: block;
+        }
+
+        .metric-k {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .metric-v {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .section {
+            margin-top: 26px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(162, 184, 211, 0.2);
+            border-radius: 34px;
+            box-shadow: var(--shadow);
+            padding: 32px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 26px;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: -0.03em;
+        }
+
+        .section-subtitle {
+            margin: 8px 0 0;
+            max-width: 720px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .download-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(240,246,255,0.82));
+            border: 1px solid rgba(162, 184, 211, 0.2);
+            border-radius: 28px;
+            padding: 24px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .download-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .platform {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .platform strong {
+            font-size: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .platform span {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--blue-soft);
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .download-list {
+            display: grid;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        .download-list div::before {
+            content: "•";
+            color: var(--blue);
+            margin-right: 10px;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            min-height: 54px;
+            border-radius: 18px;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #1f63ff 0%, #4f88ff 100%);
+            color: #fff;
+            box-shadow: 0 18px 28px rgba(31, 99, 255, 0.22);
+        }
+
+        .cta-secondary {
+            background: #eff4fb;
+            color: var(--blue-deep);
+        }
+
+        .cta-disabled {
+            background: #eff4fb;
+            color: #94a3b8;
+            border: 1px dashed #cfd8e3;
+            cursor: not-allowed;
+            pointer-events: none;
+            box-shadow: none;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .feature {
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,248,253,0.92));
+            border: 1px solid rgba(162, 184, 211, 0.2);
+            border-radius: 24px;
+            padding: 22px;
+        }
+
+        .feature h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+
+        .feature p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .deploy-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        .deploy-card,
+        .code-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,248,253,0.92));
+            border: 1px solid rgba(162, 184, 211, 0.2);
+            border-radius: 24px;
+            padding: 24px;
+        }
+
+        .deploy-card ol {
+            margin: 14px 0 0;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+        .code-card pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--blue-deep);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 22px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 1080px) {
+            .hero-grid,
+            .deploy-grid,
+            .download-grid,
+            .feature-grid,
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .shell {
+                width: min(100%, calc(100% - 24px));
+                padding-top: 18px;
+            }
+
+            .hero,
+            .section-card {
+                padding: 22px;
+                border-radius: 24px;
+            }
+
+            .topbar,
+            .section-head,
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-title {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <div class="topbar">
+            <div class="brand">
+                <div class="brand-mark"></div>
+                <div class="brand-copy">
+                    <h1>小睿伴学</h1>
+                    <p>在线学习状态感知与辅助干预系统</p>
+                </div>
+            </div>
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                <span>下载站点已准备，可与云端后端共存部署</span>
+            </div>
+        </div>
+
+        <section class="hero">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-eyebrow">Download Center</div>
+                    <h2 class="hero-title">把小睿伴学真正发布出去。</h2>
+                    <p class="hero-text">
+                        这是一套面向实际分发场景设计的下载官网页面，用于承载小睿伴学桌面安装包。它可以与现有阿里云后端一起部署，让用户在同一台服务器上完成账号登录、班级同步与安装包下载。
+                    </p>
+                    <div class="hero-pills">
+                        <span>PyQt5 桌面应用</span>
+                        <span>FastAPI 云端同步</span>
+                        <span>本地 Vosk + Qwen2.5</span>
+                        <span>教师端 / 学生端一体化</span>
+                    </div>
+                    <div class="metric-grid">
+                        <div class="metric">
+                            <span class="metric-k">部署模式</span>
+                            <span class="metric-v">Nginx + /api</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-k">推荐域名结构</span>
+                            <span class="metric-v">站点 / 接口共域</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-k">当前云端</span>
+                            <span class="metric-v">阿里云 ECS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-side">
+                    <div class="hero-card">
+                        <h2>对外展示内容</h2>
+                        <p>项目介绍、核心能力、安装包下载入口、部署状态说明和联系信息，统一在一个简洁的官网里完成展示。</p>
+                    </div>
+                    <div class="hero-card">
+                        <h2>适合当前项目的发布方式</h2>
+                        <p>前端静态站点由 Nginx 直接对公网提供，云端后端退到本机 <code>127.0.0.1:8000</code>，通过 <code>/api</code> 反向代理。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-card">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">下载安装</h2>
+                        <p class="section-subtitle">当前官网已提供 macOS 正式下载入口；Windows 版本仍在适配打包中，这里会先明确展示状态，避免用户点击后出现 404。</p>
+                    </div>
+                </div>
+
+                <div class="download-grid">
+                    <article class="download-card">
+                        <div class="download-top">
+                            <div class="platform">
+                                <strong>macOS</strong>
+                                <span>Apple 芯片离线安装包</span>
+                            </div>
+                            <span class="badge">推荐</span>
+                        </div>
+                        <div class="download-list">
+                            <div>适合直接分发给 Mac 用户</div>
+                            <div>可承载摄像头与麦克风权限</div>
+                            <div>可打包本地模型与离线语音能力</div>
+                        </div>
+                        <a class="cta cta-primary" href="/downloads/%E5%B0%8F%E7%9D%BF%E4%BC%B4%E5%AD%A6-macos-arm64.zip">
+                            下载 macOS 版本
+                        </a>
+                    </article>
+
+                    <article class="download-card">
+                        <div class="download-top">
+                            <div class="platform">
+                                <strong>Windows</strong>
+                                <span>x64 版本开发中</span>
+                            </div>
+                            <span class="badge">可扩展</span>
+                        </div>
+                        <div class="download-list">
+                            <div>后续将在 Windows 环境单独打包</div>
+                            <div>计划提供 zip 或 exe 安装包</div>
+                            <div>当前先隐藏真实下载链接，避免无效访问</div>
+                        </div>
+                        <div class="cta cta-disabled">Windows 版本开发中</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-card">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">系统亮点</h2>
+                        <p class="section-subtitle">官网不是孤立页面，而是围绕当前项目的真实能力组织的对外分发入口。</p>
+                    </div>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature">
+                        <h3>在线学习状态感知</h3>
+                        <p>学生端支持实时专注度检测、手机检测、姿态判断和详细数据分析，不再只是简单演示页面。</p>
+                    </div>
+                    <div class="feature">
+                        <h3>教师端班级管理</h3>
+                        <p>教师可创建班级、生成班级码、查看学生在线状态和实时看板，形成班级管理闭环。</p>
+                    </div>
+                    <div class="feature">
+                        <h3>本地智能助手</h3>
+                        <p>小睿支持离线语音识别与本地千问控制，能完成页面控制、状态播报和辅助问答。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-card">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">上线方式</h2>
+                        <p class="section-subtitle">推荐采用 Nginx 托管站点、反向代理后端的结构，这样网站和云端接口可以稳定共存。</p>
+                    </div>
+                </div>
+
+                <div class="deploy-grid">
+                    <div class="deploy-card">
+                        <h3>推荐部署步骤</h3>
+                        <ol>
+                            <li>将打包后的安装包复制到站点的 <code>downloads</code> 目录。</li>
+                            <li>将后端服务改为仅监听 <code>127.0.0.1:8000</code>。</li>
+                            <li>使用 Nginx 托管本页面所在目录，并将 <code>/api</code> 和 <code>/health</code> 代理到 FastAPI。</li>
+                            <li>重启 Nginx 与后端服务，公网即同时提供下载页和接口能力。</li>
+                        </ol>
+                    </div>
+
+                    <div class="code-card">
+                        <pre>公网网站           -> /
+下载文件           -> /downloads/
+后端 API           -> /api/*
+健康检查           -> /health
+
+Nginx(80)
+├─ static site
+└─ proxy /api -> 127.0.0.1:8000</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            <span>小睿伴学 · 下载官网模板</span>
+            <span>当前已上线：小睿伴学-macos-arm64.zip；Windows 安装包将在后续补充</span>
+        </div>
+    </div>
+</body>
+</html>
