@@ -1,0 +1,4 @@
+Experiment,Task,Dataset,Main Metric,Our Score,Best Baseline,Improvement
+Exp1: T-HGAT,Knowledge Tracing,EdNet,AUC,0.8289,0.8067,+2.75%
+Exp2: SADA,Temporal Alignment,CMOSE,F1-Macro,0.7667,0.7234,+5.99%
+Exp3: UHMF,Multimodal Fusion,CMOSE,Accuracy,0.8223,0.7889,+4.23%

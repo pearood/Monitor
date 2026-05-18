@@ -1,0 +1,7 @@
+Variant,Accuracy,F1-Macro,F1-Weighted,Drop (%)
+UHMF (Full),0.8189,0.8012,0.8123,-
+w/o Hierarchical Scene,0.7689,0.7501,0.7612,6.10
+w/o Modal Uncertainty,0.7856,0.7667,0.7778,4.06
+w/o Data Uncertainty,0.7789,0.7601,0.7712,4.88
+w/o Meta Learning,0.7523,0.7334,0.7445,8.12
+Base,0.6823,0.6612,0.6723,16.68

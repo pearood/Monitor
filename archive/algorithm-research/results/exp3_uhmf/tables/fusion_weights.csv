@@ -1,0 +1,4 @@
+Scene,Video Weight,Audio Weight,Text Weight,Dominant Modality
+Lecture,0.38,0.31,0.31,Video
+Discussion,0.28,0.42,0.3,Audio
+Practice,0.25,0.25,0.5,Text
